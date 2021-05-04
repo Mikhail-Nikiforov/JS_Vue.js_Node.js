@@ -38,19 +38,6 @@ Vue.component('cart', {
                         }
                     })
             }
-
-            // this.$parent.getJson(`${API}/addToBasket.json`)
-            //     .then(data => {
-            //         if(data.result === 1){
-            //             let find = this.cartItems.find(el => el.id_product === item.id_product);
-            //             if(find){
-            //                 find.quantity++;
-            //             } else {
-            //                 const prod = Object.assign({quantity: 1}, item);
-            //                 this.cartItems.push(prod)
-            //             }
-            //         }
-            //     })
         },
         remove(item){
             this.$parent.getJson(`${API}/addToBasket.json`)
@@ -64,18 +51,18 @@ Vue.component('cart', {
                     }
                 })
         },
-        // cartCount() {
-        //     return this.cartItems.reduce((summ, item) => summ + item.quantity, 0);
-        //   },
-        //   cartSumm() {
-        //     return this.cartItems.reduce((summ, item) => summ + item.quantity*item.price, 0);
-        //   }
+        cartCount() {
+            return this.cartItems.reduce((summ, item) => summ + item.quantity, 0);
+          },
+          cartSumm() {
+            return this.cartItems.reduce((summ, item) => summ + item.quantity*item.price, 0);
+          }
     },
     template: `
     <div>
     <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
-    <h2 v-if=" cartItems.length === 0">Корзина пуста</h2>
-        <div v-else >
+
+        <div v-if=" cartItems.length > 0" >
             <div class="cart-block" v-show="showCart">      
                 <h3 > {{ this.cartItems.reduce((summ, item) => summ + item.quantity, 0) }} товара(ров) ИТОГО:{{ this.cartItems.reduce((summ, item) => summ + item.quantity*item.price, 0) }}) рублей </h3>
                 <cart-item v-for="item of cartItems" :key="item.id_product" :img="item.imgPath" :cart-item="item" :cart-count = "cartCount"

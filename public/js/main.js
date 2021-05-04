@@ -11,7 +11,7 @@ const linkList = list.map(item => renderMenu(item.link, item.name));
 document.querySelector('.menu').innerHTML = linkList.join('');
 }
 renderLinkList(menu);
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+// const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 const app = new Vue({
     el: '#app',
